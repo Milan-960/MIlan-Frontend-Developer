@@ -1,0 +1,59 @@
+.App {
+  text-align: center;
+}
+
+/* this is for header  */
+
+.fixed-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* this is for info  */
+
+.space-info-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 4rem;
+  color: white;
+  font-weight: 800;
+}
+
+.text-container {
+  text-align: center;
+}
+
+.launch-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  float: left;
+  font-size: 18px;
+  border-radius: 6px;
+}
+
+.launch-button:hover {
+  background-color: #0056b3;
+}
+
+.main {
+  height: 100vh;
+}
+
+.video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  object-fit: cover;
+}
