@@ -7,7 +7,7 @@ import SearchForm from "./components/SearchForm";
 import DataGrid from "./components/DataGrid";
 import Pagination from "./ui/Pagination";
 import Modal from "./ui/Modal";
-import SpaceInfo from "./components/SpaceInfo";
+import SpaceInfo from "./components/Space-Info";
 
 import "./App.css";
 

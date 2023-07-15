@@ -2,6 +2,9 @@
 
 This project uses the SpaceX API to fetch and display data. also using PHP
 
+<img align="right" src="./SS/Home.png" width="100%"/>&nbsp;
+&nbsp;
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
