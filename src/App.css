@@ -57,3 +57,17 @@
   z-index: -100;
   object-fit: cover;
 }
+
+/* Media queries for mobile-friendly design */
+
+@media (max-width: 768px) {
+  .space-info-container {
+    font-size: 1.5rem;
+  }
+
+  .launch-button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
