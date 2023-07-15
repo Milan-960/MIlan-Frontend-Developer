@@ -50,4 +50,6 @@ php -S localhost:8000
 
 ## Here is the working video
 
-<video src="./SS/WorkingDemo.mp4"  />
+<video controls>
+  <source src="./SS/WorkingDemo.mp4" type="video/mp4">
+</video>
