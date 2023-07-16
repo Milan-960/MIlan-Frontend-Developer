@@ -1,21 +1,16 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import { CapsulesProvider } from "../hooks/CapsulesProvider";
+import { BrowserRouter } from "react-router-dom";
 import App from "../App";
-
-jest.mock("../services/spacexService", () => ({
-  fetchCapsules: () => Promise.resolve([]),
-}));
 
 test("App matches snapshot", async () => {
   const { asFragment } = render(
-    <CapsulesProvider>
-      <App />
-    </CapsulesProvider>
+    <BrowserRouter>
+      <CapsulesProvider>
+        <App />
+      </CapsulesProvider>
+    </BrowserRouter>
   );
-
-  // Wait for any asynchronous actions (like useEffect) to complete
-  await new Promise((resolve) => setTimeout(resolve, 0));
 
   expect(asFragment()).toMatchSnapshot();
 });

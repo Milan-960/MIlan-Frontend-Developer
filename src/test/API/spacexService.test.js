@@ -1,42 +1,40 @@
-import { enableFetchMocks } from "jest-fetch-mock";
-
 import { fetchCapsules } from "../../services/spacexService";
 
-// Enable fetch mocks so that all fetch requests are replaced with a mock function
-enableFetchMocks();
+describe("API tests", () => {
+  let mockFetch;
 
-describe("fetchCapsules", () => {
-  // Reset all mocks after each test
-  afterEach(() => {
-    fetch.resetMocks();
+  // Before each test, spy on the fetch function
+  beforeEach(() => {
+    mockFetch = jest.spyOn(global, "fetch");
   });
 
-  it("returns data when fetch is successful", async () => {
-    const mockData = [
-      { id: "1", name: "Capsule 1" },
-      { id: "2", name: "Capsule 2" },
-    ];
-    fetch.mockResponseOnce(JSON.stringify(mockData));
+  // After each test, restore the original fetch function
+  afterEach(() => {
+    mockFetch.mockRestore();
+  });
 
-    const data = await fetchCapsules();
+  // Test case: Successful API call
+  it("fetches capsules successfully from an API", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({ capsules: "mock capsule data" }),
+    });
 
-    expect(data).toEqual(mockData);
+    const response = await fetchCapsules();
+    expect(response).toEqual({ capsules: "mock capsule data" });
+
+    // Assert that fetch was called with the expected URL
     expect(fetch).toHaveBeenCalledWith("http://localhost:8000/api.php");
   });
 
-  it("returns undefined and logs error when fetch fails", async () => {
-    console.error = jest.fn(); // Mock console.error to avoid logging in test
+  // Test case: Unsuccessful API call
+  it("fetches erroneously from an API", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: false,
+      status: 404,
+    });
 
-    // Simulate an unsuccessful request with status code 400
-    fetch.mockImplementationOnce(() =>
-      Promise.resolve({ ok: false, status: 400 })
-    );
-
-    const data = await fetchCapsules();
-
-    expect(data).toBeUndefined();
-    expect(console.error).toHaveBeenCalledWith(
-      "API request failed with status 400"
-    );
+    await expect(fetchCapsules()).rejects.toThrow("API request failed");
+    expect(fetch).toHaveBeenCalledWith("http://localhost:8000/api.php");
   });
 });

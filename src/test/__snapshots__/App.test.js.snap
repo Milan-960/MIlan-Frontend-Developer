@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="App"
+  >
+    <header
+      class="p-5 bg-blue-500 text-white text-center text-xl fixed-header"
+    >
+      <a
+        href="/"
+      >
+        <img
+          alt="spaceX"
+          class="w-64"
+          src="Space.png"
+        />
+      </a>
+    </header>
+    <div
+      class="space-info-container"
+    >
+      <div
+        class="text-container"
+      >
+        <h1>
+          UPCOMING LAUNCH 
+        </h1>
+        <h2>
+          STARLINK MISSION
+        </h2>
+        <button
+          class="launch-button"
+        >
+          Launch
+        </button>
+      </div>
+      <div
+        class="main"
+      >
+        <div>
+          
+              
+          <video
+            autoplay=""
+            class="video"
+            loop=""
+            muted=""
+            playsinline=""
+            preload="metadata"
+          >
+            
+              
+            <source
+              src="Starship.mp4"
+              type="video/mp4"
+            />
+            
+              
+          </video>
+        </div>
+      </div>
+    </div>
+    <h1
+      class="text-center"
+    >
+      Loading...
+    </h1>
+  </div>
+</DocumentFragment>
+`;

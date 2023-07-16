@@ -50,8 +50,13 @@ php -S localhost:8000
 
 ## Here is the working video
 
-
 https://github.com/Milan-960/SpaceX-App/assets/79278557/c225dba8-2c43-4914-acbb-77554536f72a
 
+## Test coverage!
 
+<img align="right" src="./SS/Test.png" width="100%"/>
+&nbsp;
 
+## Author
+
+[Milan](https://github.com/Milan-960)
