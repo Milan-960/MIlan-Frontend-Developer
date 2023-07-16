@@ -1,30 +1,28 @@
 import React from "react";
-import { render, cleanup, fireEvent, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import SpaceInfo from "../components/Space-Info";
 
-// Run cleanup function after each test
-afterEach(cleanup);
+// Mocking the 'Video' component to make it return a simple div with a 'data-testid' attribute.
+jest.mock("../ui/Video", () => () => <div data-testid="mock-video" />);
 
-// Describe a block of tests for the SpaceInfo component
-describe("SpaceInfo", () => {
-  // Test if the SpaceInfo component can render without throwing an error
-  it("renders without crashing", () => {
-    render(<SpaceInfo />);
-  });
+test("renders SpaceInfo with title, subtitle, and button", () => {
+  // Render the SpaceInfo component
+  render(<SpaceInfo />);
 
-  // Test if the SpaceInfo component correctly renders a launch button
-  it("renders a launch button", () => {
-    render(<SpaceInfo />);
-    // getByRole gets the first matching element by the specified role and name
-    const button = screen.getByRole("button", { name: /launch/i });
-    // We check if the button is in the document
-    expect(button).toBeInTheDocument();
-  });
+  expect(screen.getByText(/upcoming launch/i)).toBeInTheDocument();
+  expect(screen.getByText(/starlink mission/i)).toBeInTheDocument();
+  expect(screen.getByRole("button", { name: /launch/i })).toBeInTheDocument();
+  expect(screen.getByTestId("mock-video")).toBeInTheDocument();
+});
 
-  // Test if clicking the button in the SpaceInfo component does not throw an error
-  it("does not throw an error when the button is clicked", () => {
-    render(<SpaceInfo />);
-    const button = screen.getByRole("button", { name: /launch/i });
-    expect(() => fireEvent.click(button)).not.toThrow();
-  });
+// Mock the scrollIntoView function, which is a native function used to scroll to an element in the page
+test("handleLaunchClick function works correctly", () => {
+  const scrollIntoViewMock = jest.fn();
+  window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+  // function in SpaceInfo tries to scroll to this element
+  document.body.innerHTML = `<div id="searchForm"></div>`;
+
+  render(<SpaceInfo />);
+  fireEvent.click(screen.getByRole("button", { name: /launch/i }));
+  expect(scrollIntoViewMock).toHaveBeenCalled();
 });
