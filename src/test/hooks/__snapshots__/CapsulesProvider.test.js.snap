@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CapsulesProvider provides correct context value 1`] = `
+<div>
+  {"capsules":[{"type":"type1","status":"status1","original_launch":"launch1"}],"loading":false,"types":["type1"],"statuses":["status1"],"launches":["launch1"]}
+</div>
+`;
